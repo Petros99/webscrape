@@ -12,8 +12,8 @@ import urllib.parse    # url parsing library
 from collections import deque  # list alternitive
 
 # parse comand line arguments
-parser = argparse.ArgumentParser()                                                                  # gives the argument parser a shorter name
-parser.add_argument("url", help="must be the full url eg.\"http://usd.edu\"", type=str)             # add arguments
+parser = argparse.ArgumentParser()                                                       # gives the argument parser a shorter name
+parser.add_argument("url", help="must be the full url eg.\"http://usd.edu\"", type=str)  # add arguments
 parser.add_argument("-i", "--iterative", help="search webpages that are linked on the given one", action="store_true")
 parser.add_argument("-f", help="file to send results to", type=str)
 parser.add_argument("-v", help="increases verbosity", action='count')
