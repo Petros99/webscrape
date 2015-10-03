@@ -24,8 +24,8 @@ parser.add_argument("-v", help="increases verbosity", action='count')
 parser.add_argument("-e", "--expression", help="the regex to use when searching, if not specified the default will be used, which searches for email addresses", type=str)#adds the -e option
 parser.add_argument("-u", help="include the url of the page that the regex was found on", action="store_true")
 parser.add_argument("-c", "--count", help="the number of pages to look through", type=int)
-parser.add_argument("-b", help="--comma sepparated list of domains that will not be looked through", type=str)
-parser.add_argument("-w", help="--comma sepparated list of domains that will only be looked through", type=str)
+parser.add_argument("-b", help="--comma sepparated list of netlocs that will not be looked through", type=str)
+parser.add_argument("-w", help="--comma sepparated list of netlocs that will only be looked through", type=str)
 args = parser.parse_args()#parses the arguments for use
 
 if args.v :#if there is more than 0 verbose flags
@@ -114,7 +114,7 @@ if args.w:
             return True
 
 if args.b:
-    blacklist = set(args.w.split(','))
+    blacklist = set(args.b.split(','))
     def listCheck(netloc):
         if netloc in blacklist:
             return True
