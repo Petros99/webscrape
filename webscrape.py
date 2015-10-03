@@ -98,13 +98,13 @@ if args.w and args.b:  # if bolth a whitelist and a blacklist are specified
     ePrint('-b and -w can not be specified together')  # print an error
     exit()  # and exit
 
-def listCheck(netloc):  # define a function
+def skipLoc(netloc):  # define a function
     return False  # always be False
 
 if args.w:  # if a whitelist is specified
     whitelist = set(args.w.split(','))  # split it up into a set
 
-    def listCheck(netloc):  # return True for continue or False for add to todo
+    def skipLoc(netloc):  # return True for continue or False for add to todo
         if netloc in whitelist: 
             return False
         else:
@@ -113,7 +113,7 @@ if args.w:  # if a whitelist is specified
 if args.b: # if there is a blacklist
     blacklist = set(args.b.split(','))  # split it into a set
 
-    def listCheck(netloc):  # return True to continue, False to add to the todo list
+    def skipLoc(netloc):  # return True to continue, False to add to the todo list
         if netloc in blacklist:
             return True
         else:
@@ -144,7 +144,7 @@ if args.iterative:
         for href in hrefParser(page):  # look through the page for hrefs
             (scheme, netloc, path, dumy, dumy, dumy) = urllib.parse.urlparse(href)           # split the found uri
 
-            if listCheck(netloc):  # if listCheck says True then ignore the href
+            if skipLoc(netloc):  # if listCheck says True then ignore the href
                 continue
 
             (oldScheme, oldNetloc, oldPath, dumy, dumy, dumy) = urllib.parse.urlparse(link)  # split the current uri
